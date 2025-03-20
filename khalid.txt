@@ -1,0 +1,57 @@
+create database shahid;
+
+create table user(
+  id int primary key,
+  username varchar(15) not null unique,
+  email varchar(20) not null unique,
+  password varchar(20) not null,
+  created_at datetime default current_timestamp()
+);
+
+create table movies (
+  id varchar(10) primary key,
+  title varchar(250) not null ,
+  type_movies varchar(50) not null ,
+  duration int check (duration between 1 and 400),
+  created_at datetime default current_timestamp
+);
+
+create table favorites (
+  id int primary key,
+  content_type varchar(30) not null ,
+  added_at timestamp default 0,
+  user_id varchar(10),
+  foreign key (user_id) references user(id)
+);
+
+create table Livehannels(
+    id int primary key,
+    title varchar(50) not null,
+    description varchar(255) not null,
+    start_time datetime,
+    end_time datetime,
+    created_at timestamp default current_timestamp,
+    user_id varchar(10),
+    foreign key (user_id) references user(id)
+);
+
+insert into user values ('1','khalid','khalid@gmail.com','123456Aa');
+insert into user values ('2','turki','turki@gmail.com','123456Aa');
+insert into user values ('3','sultan','sultan@gmail.com','123456Aa');
+
+insert into Livehannels values ('1','sport','matche btewn alhilal VS alnasir','12 am oclock','2025/3/23 1:50 pm','1');
+insert into Livehannels values ('2','sport','matche btewn alhilal VS altihad','2 am oclock','2025/3/23 3:50 pm','2');
+insert into Livehannels values ('3','sport','matche btewn alhilal VS alahly','5 am oclock','2025/3/23 6:50 pm','3');
+
+insert into movies values ('9','publo','action','2 hours');
+insert into movies values ('8','shawshank','action','2 hours');
+insert into movies values ('7','fight club','action','2 hours');
+
+insert into favorites values ('4','action','naw','1');
+insert into favorites values ('5','action','naw','2');
+insert into favorites values ('6','action','naw','3');
+
+
+update user set email='khalid1234@gmail.com' where id='1';
+
+delete from user where id='3';
