@@ -10,7 +10,7 @@ create table user(
 
 create table movies (
   id varchar(10) primary key,
-  title varchar(250) not null ,
+  title varchar(50) not null ,
   type_movies varchar(50) not null ,
   duration int check (duration between 1 and 400),
   created_at datetime default current_timestamp
